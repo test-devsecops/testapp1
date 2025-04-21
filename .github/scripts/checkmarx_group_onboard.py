@@ -54,7 +54,7 @@ def getGroupsList(file_name):
     try:
         groups_list = []
         groups_items = {}
-        with open(file_name,newline='') as csvfile:
+        with open('../../inputs/file_name,newline='') as csvfile:
             reader = csv.reader(csvfile,delimiter=',')
             tag_idx = 1
             group_name_idx = 0
@@ -118,7 +118,7 @@ if __name__ == "__main__":
     client_id = os.environ['CX_CLIENT_ID']
     # read from config file
     config = configparser.ConfigParser()
-    config.read('.github/config/config.env')
+    config.read('../config/config.env')
     groups_file = config.get('INPUT', 'GROUPS_FILE')
     roles = config.get('INPUT', 'ROLES')
 
