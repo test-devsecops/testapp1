@@ -54,7 +54,7 @@ def getGroupsList(file_name):
     try:
         groups_list = []
         groups_items = {}
-        with open('../../inputs/file_name,newline='') as csvfile:
+        with open(f'../../inputs/{file_name}',newline='') as csvfile:
             reader = csv.reader(csvfile,delimiter=',')
             tag_idx = 1
             group_name_idx = 0
