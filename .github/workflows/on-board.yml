@@ -29,11 +29,6 @@ jobs:
         run: |
           git checkout main
           git fetch origin
-      # Set env variables from github variables
-      - name: Set env variables
-        env:
-          CX_TENANT_NAME: ${{ vars.CX_TENANT_NAME }}
-        run: echo env variable CX_TENANT_NAME = ${{ env.CX_TENANT_NAME }}
       # Set up python to run the script
       - name: Set up python
         uses: actions/setup-python@v5
@@ -41,4 +36,6 @@ jobs:
           python-version: 3.12
       # Runs the script stored in .github/script
       - name: Run script
+        env:
+          CX_TENANT_NAME: ${{ vars.CX_TENANT_NAME }}
         run: python3 .github/scripts/checkmarx_group_onboard.py
