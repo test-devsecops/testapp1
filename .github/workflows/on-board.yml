@@ -37,5 +37,9 @@ jobs:
       # Runs the script stored in .github/script
       - name: Run script
         env:
+          CX_CLIENT_ID: ${{ vars.CX_CLIENT_ID }}
           CX_TENANT_NAME: ${{ vars.CX_TENANT_NAME }}
+          CX_TENANT_IAM_URL: ${{ vars.CX_TENANT_IAM_URL }}
+          CX_TENANT_URL: ${{ vars.CX_TENANT_URL }}
+          CX_TOKEN: ${{ secrets.CX_TOKEN }}
         run: python3 .github/scripts/checkmarx_group_onboard.py
