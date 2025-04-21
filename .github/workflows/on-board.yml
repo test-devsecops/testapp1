@@ -24,11 +24,16 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      # COnfigure git to set up the repo
+      # Configure git to set up the repo
       - name: configure git
         run: |
           git checkout main
           git fetch origin
+      # Set env variables from github variables
+      - name: Set env variables
+        env:
+          CX_TENANT_NAME: ${{ vars.CX_TENANT_NAME }}
+        run: echo env variable CX_TENANT_NAME = ${{ env.CX_TENANT_NAME }}
       # Set up python to run the script
       - name: Set up python
         uses: actions/setup-python@v5
