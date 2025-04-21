@@ -5,6 +5,7 @@ name: CHECKMARX_ONBOARD
 # Controls when the workflow will run
 on:
   # Triggers the workflow on schedule
+  workflow_dispatch:
   # Run script at 12PM everyday
   schedule:
     - cron: "0 12 * * *"
