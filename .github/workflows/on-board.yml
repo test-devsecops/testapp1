@@ -5,26 +5,34 @@ name: CHECKMARX_ONBOARD
 # Controls when the workflow will run
 on:
   # Triggers the workflow on schedule
-  workflow_dispatch:
   # Run script at 12PM everyday
   schedule:
     - cron: "0 12 * * *"
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
+  # This workflow contains a single job called "run-script"
+  create-CX-groups:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      # Checkout git code to run these workflows
+      - name: Check out repository to the runner
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      # COnfigure git to set up the repo
+      - name: configure git
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          git checkout main
+          git fetch origin
+      # Set up python to run the script
+      - name: Set up python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
+      # Runs the script stored in .github/script
+      - name: Run script
+        run: python3 .github/scripts/checkmarx_group_onboard.py
