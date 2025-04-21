@@ -120,7 +120,8 @@ if __name__ == "__main__":
     config = configparser.ConfigParser()
     config.read('.github/config/config.env')
     groups_file = config.get('INPUT', 'GROUPS_FILE')
-    roles = config.get('INPUT', 'ROLES')
+    roles_string = config.get('INPUT', 'ROLES')
+    roles = roles_string.split(',')
 
     # Retrieve the Access Token from CX
     acc_token = getAccessToken(tenant_iam_url, token, tenant_name)
